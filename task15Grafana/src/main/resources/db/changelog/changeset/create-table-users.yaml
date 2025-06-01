@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_users
+      author: Aleksey Timofeev
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: hash_pass
+                  type: bigint
+                  constraints:
+                    nullable: false

@@ -1,0 +1,34 @@
+spring:
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  h2:
+    console.enabled: true
+
+  datasource:
+    url: jdbc:h2:./users
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate.format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+user-cache:
+  maxSize: 1000000
+  expireInMinutes: 60
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /api-docs-ui
+

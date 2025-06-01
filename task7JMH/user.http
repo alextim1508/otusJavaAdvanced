@@ -1,0 +1,47 @@
+###
+POST http://localhost:8080/user
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "name" : "ivan",
+  "email" : "ivan@yandex.ru",
+  "password" : "password"
+}
+
+###
+POST http://localhost:8080/user
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "name" : "alex",
+  "email" : "alex@yandex.ru",
+  "password" : "password"
+}
+
+###
+POST http://localhost:8080/user
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "name" : "kirill",
+  "email" : "kirill@yandex.ru",
+  "password" : "password"
+}
+
+###
+GET http://localhost:8080/user
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+###
+GET http://localhost:8080/user/1
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache

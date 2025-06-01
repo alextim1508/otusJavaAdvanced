@@ -1,0 +1,58 @@
+services:
+  user-build-service:
+    image: maven:3.9.9-eclipse-temurin
+    working_dir: /data
+    container_name: user-build-container
+    volumes:
+      - ./:/data
+    command: ["mvn",  "package"]
+
+  user-run-service:
+    image: openjdk:21-jdk
+    depends_on:
+      - user-build-service
+    working_dir: /data
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/data
+    command: ["java", "-jar", "./target/task15Grafana.jar"]
+    hostname: user-service
+    container_name: user-run-container
+    restart: always
+    networks:
+      - otus
+
+  prometheus-service:
+    image: prom/prometheus
+    depends_on:
+      - user-run-service
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    networks:
+      - otus
+    volumes:
+      - ./infra/prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: always
+    hostname: prometheus
+
+  grafana-service:
+    image: grafana/grafana
+    depends_on:
+      - prometheus-service
+    ports:
+      - 3000:3000
+    volumes:
+      - ./infra/grafana/:/etc/grafana/provisioning/
+    env_file:
+      - ./infra/grafana/config.monitoring
+    networks:
+      - otus
+    restart: always
+
+networks:
+  otus:
+    driver: bridge

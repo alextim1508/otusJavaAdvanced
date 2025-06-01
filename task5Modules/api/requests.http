@@ -1,0 +1,48 @@
+###
+POST http://localhost:8080/hotels
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "address" : "address"
+}
+
+###
+GET http://localhost:8080/hotels
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+
+###
+POST http://localhost:8080/persons
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "login" : "login"
+}
+
+###
+GET http://localhost:8080/persons
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+
+###
+POST http://localhost:8080/reservations
+Accept: */*
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "hotelId" : 1,
+  "personId" : 1,
+  "entry" : "2024-10-16 12:00",
+  "exit" : "2024-10-20 12:00"
+}
+
+
